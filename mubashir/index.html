@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video with Poster, Audio, and Bouncing Ball Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        video,
+        audio {
+            margin-top: 20px;
+        }
+
+        #gameCanvas {
+            margin-top: 20px;
+            border: 2px solid #000;
+        }
+
+        div {
+            margin: auto;
+            width: 60%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Video with Poster -->
+    <div>
+        <h1>Video with Poster</h1>
+        <video width="600" height="340" controls poster="https://via.placeholder.com/600x340.png?text=Video+Poster">
+            <source src="https://videos.pexels.com/video-files/6646588/6646588-hd_1080_1920_30fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Audio -->
+    <div>
+        <h1>Video Audio</h1>
+        <audio controls>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- Canvas Bouncing Game -->
+    <div>
+        <h2>Bouncing Ball Game</h2>
+        <canvas id="gameCanvas" width="500" height="300"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let x = canvas.width / 2;
+        let y = canvas.height - 30;
+        let dx = 2;
+        let dy = -2;
+        const ballRadius = 10;
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+
+            if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+                dx = -dx;
+            }
+            if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+                dy = -dy;
+            }
+
+            x += dx;
+            y += dy;
+        }
+
+        setInterval(draw, 10);
+    </script>
+
+</body>
+
+</html>
