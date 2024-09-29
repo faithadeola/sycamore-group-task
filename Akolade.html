@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amoo Akolade Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            grid-template-rows: auto auto auto auto;
+            row-gap: 25px;
+            padding: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .media-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        #customCanvas {
+            border: 3px dashed #333;
+        }
+
+        h1 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        audio, video {
+            outline: 2px solid #555;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="profile_name">Amoo Akolade</h1>
+
+    <div class="media-container">
+        <audio controls>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <video controls width="400"
+            poster="https://www.publicdomainpictures.net/pictures/40000/velka/landscape-sunset.jpg">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <canvas id="customCanvas" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('customCanvas');
+        const context = canvas.getContext('2d');
+
+        let posX = canvas.width / 3;
+        let posY = canvas.height / 3;
+        let changeX = 8;
+        let changeY = 8;
+        const ballRadius = 25;
+
+        function drawBall() {
+            context.beginPath();
+            context.arc(posX, posY, ballRadius, 0, Math.PI * 2);
+            context.fillStyle = 'blue';
+            context.fill();
+            context.closePath();
+        }
+
+        function animate() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+
+            if (posX + ballRadius > canvas.width || posX - ballRadius < 0) {
+                changeX = -changeX;
+            }
+            if (posY + ballRadius > canvas.height || posY - ballRadius < 0) {
+                changeY = -changeY;
+            }
+
+            posX += changeX;
+            posY += changeY;
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
