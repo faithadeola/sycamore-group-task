@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Faith's Webpage</title>
+        <style>
+            body{
+                font: 1em sans-serif;
+                justify-content: center;
+                height: 100vh;
+                margin : 0;
+                background-color: rgb(137, 137, 144);
+            }
+        </style>
+        <body>
+
+            <div>
+                <h1>Audio Element</h1>
+                <audio controls>
+                    <source src="">
+                    Your browser does not support this audio element
+                </audio>
+            </div>
+
+            <div>
+                <h1>Video Element</h1>
+                <video width="500" height="500" controls >
+                    <source src="">
+                    Your browser does not support this video element
+                </video>
+            </div>
+
+            <div>
+                <h1>Canva element</h1>
+                <canvas id="circle" width="500" height="500"></canvas>
+                <script>
+                    var canvas = document.getElementById ("circle");
+                    var ctx = canvas.getContext("2d");
+                    ctx.beginPath();
+                    ctx.arc(100,75,50,0,2 * Math.PI);
+                    ctx.stroke();
+                </script>
+
+            </div>
+        </body>
